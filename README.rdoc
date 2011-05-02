@@ -1,0 +1,63 @@
+= Capistrano WebServer 
+
+The purpose of this gem is to provide a common interface to handling webserver related functions within capistrano deploy scripts.
+The contents of this file are still a bit of a work in progress.
+
+= Server Support
+
+Currently, only apache is supported.
+
+= Configuration
+
+== Common variables
+
+[webserver_configfile]	*default: config/webserver/webserver.conf*
+			the file to use for webserver configuration. For apache, this might be the file
+			containing the VirtualHost block of the site in which the project
+			will be running.
+[webserver_link]	*default: true*
+			Use a symlink from the webserver configuration directory to the project configuration file.
+			If this is set to false, the file will be copied to the webserver configuration directory.
+[webserver_restart]	*default: true*
+			Should the webserver be restarted after configuration is updated.
+
+== Module variables
+
+[webserver_configdir]	This is defined by the capistrano_webserver modules. For apache, this would generally point to
+			sites-enabled directory under the ServerRoot. (eg: /etc/apache2/sites-enabled)
+
+= Tasks
+
+Each webserver library will implement the following capistrano tasks. These tasks will only run on servers with the :web role.
+
+== webserver:configuration
+
+This task will handle linking or copying the configuration file from the project directory to the webserver directory.
+
+== webserver:restart
+
+This task will restart the webserver.
+
+== webserver:stop
+
+This task will stop the webserver.
+
+== webserver:start
+
+This task will start the webserver.
+
+= Usage
+
+Install the gem:
+
+	gem install capistrano-webserver
+
+Put the following code into your capistrano deploy.rb (or other) file. For now, only apache is supported. Later, support for other webservers will be added.
+
+	require 'webserver/apache'
+
+If your configuration or webserver requires a restart after code deploy, simply add the following hook. This will work by default, careful of overriding the variable 'webserver_restart'.
+
+	after 'deploy:update_code', 'webserver:configuration'
+
+In the case of Apache, you do not need this. You should not need to restart the Apache server after every deploy.
