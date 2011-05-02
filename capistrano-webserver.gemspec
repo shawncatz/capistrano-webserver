@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capistrano-webserver}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Shawn Catanzarite"]
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{Common way to manage webserver configuration using capistrano}
   s.email = %q{shawn@dasho.net}
   s.extra_rdoc_files = ["README.rdoc", "lib/webserver/apache.rb"]
-  s.files = ["README.rdoc", "Rakefile", "lib/webserver/apache.rb", "Manifest", "capistrano-webserver.gemspec"]
+  s.files = ["README.rdoc", "Rakefile", "capistrano-webserver.gemspec", "lib/webserver/apache.rb", "Manifest"]
   s.homepage = %q{http://github.com/dashonet/capistrano-webserver}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Capistrano-webserver", "--main", "README.rdoc"]
   s.require_paths = ["lib"]
