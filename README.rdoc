@@ -11,19 +11,19 @@ Currently, only apache is supported.
 
 == Common variables
 
-[webserver_configfile]	*default: config/webserver/webserver.conf*
+[webserver_config]	<b>default: config/webserver/webserver.conf</b>
 			the file to use for webserver configuration. For apache, this might be the file
 			containing the VirtualHost block of the site in which the project
 			will be running.
-[webserver_link]	*default: true*
+[webserver_link]	<b>default: true</b>
 			Use a symlink from the webserver configuration directory to the project configuration file.
 			If this is set to false, the file will be copied to the webserver configuration directory.
-[webserver_restart]	*default: true*
+[webserver_restart]	<b>default: true</b>
 			Should the webserver be restarted after configuration is updated.
 
 == Module variables
 
-[webserver_configdir]	This is defined by the capistrano_webserver modules. For apache, this would generally point to
+[webserver_dir]		This is defined by the capistrano_webserver modules. For apache, this would generally point to
 			sites-enabled directory under the ServerRoot. (eg: /etc/apache2/sites-enabled)
 
 = Tasks
