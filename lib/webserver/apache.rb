@@ -37,13 +37,13 @@ Capistrano::Configuration.instance(true).load do
       upload "#{webserver_config}", "#{shared_path}/webserver/#{application}"
       
       # remove the old file / link
-      run "#{try_sudo} rm -f #{webserver_dir}/#{application}"
+      run "sudo rm -f #{webserver_dir}/#{application}"
       
       # link or copy file from shared to webserver directory
       if webserver_link == true
-        run "#{try_sudo} ln -sf #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
+        run "sudo ln -sf #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
       else
-        run "#{try_sudo} cp #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
+        run "sudo cp #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
       end
 
       # restart the webserver
@@ -54,17 +54,17 @@ Capistrano::Configuration.instance(true).load do
 
     desc "start webserver (apache)"
     task :start, :roles => :web do
-      run "#{try_sudo} #{webserver_init} start"
+      run "sudo #{webserver_init} start"
     end
 
     desc "stop webserver (apache)"
     task :stop, :roles => :web do
-      run "#{try_sudo} #{webserver_init} stop"
+      run "sudo #{webserver_init} stop"
     end
 
     desc "restart webserver (apache)"
     task :restart, :roles => :web do
-      run "#{try_sudo} #{webserver_init} restart"
+      run "sudo #{webserver_init} restart"
     end
 
   end
