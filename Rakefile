@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'  
 require 'echoe'  
   
-Echoe.new('capistrano-webserver', '0.1.3') do |p|  
+Echoe.new('capistrano-webserver', '0.1.4') do |p|  
   p.description     = "Common way to manage webserver (apache) configuration using capistrano"
   p.summary         = "Common way to manage webserver configuration using capistrano. Only apache is currently supported."
   p.url             = "http://github.com/dashonet/capistrano-webserver"  
