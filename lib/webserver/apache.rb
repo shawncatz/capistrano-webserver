@@ -3,6 +3,7 @@ Capistrano::Configuration.instance(true).load do
   ## common variables
   set :webserver_link,    true
   set :webserver_config,  "config/webserver/webserver.conf"
+  set :webserver_application, application
   set :webserver_restart, true
 
   ## apache specific variables
@@ -34,16 +35,16 @@ Capistrano::Configuration.instance(true).load do
     DESC
     task :configuration, :roles => :web do
       # upload the file
-      upload "#{webserver_config}", "#{shared_path}/webserver/#{application}"
-      
+      upload "#{webserver_config}", "#{shared_path}/webserver/#{webserver_application}"
+
       # remove the old file / link
-      run "sudo rm -f #{webserver_dir}/#{application}"
-      
+      run "sudo rm -f #{webserver_dir}/#{webserver_application}"
+
       # link or copy file from shared to webserver directory
       if webserver_link == true
-        run "sudo ln -sf #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
+        run "sudo ln -sf #{shared_path}/webserver/#{webserver_application} #{webserver_dir}/#{webserver_application}"
       else
-        run "sudo cp #{shared_path}/webserver/#{application} #{webserver_dir}/#{application}"
+        run "sudo cp #{shared_path}/webserver/#{webserver_application} #{webserver_dir}/#{webserver_application}"
       end
 
       # restart the webserver
