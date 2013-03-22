@@ -1,2 +1,2 @@
-require "capistrano-webserver/version"
+require "capistrano/webserver"
 

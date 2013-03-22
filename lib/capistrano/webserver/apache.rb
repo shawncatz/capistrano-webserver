@@ -1,5 +1,4 @@
 Capistrano::Configuration.instance(true).load do
-
   ## common variables
   set :webserver_link,    true
   set :webserver_config,  "config/webserver/webserver.conf"
